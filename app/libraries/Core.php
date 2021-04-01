@@ -58,9 +58,18 @@ class Core
         $this->getAndUseUrlParams();
     }
 
+    /**
+     * @return false|string[]
+     */
     public function getUrl()
     {
-        if (isset($_GET['url']));
+
+        if (!isset($_GET['url']))
+        {
+            $_GET['url'] = '/';
+        }
+
+        elseif (isset($_GET['url']));
         {
             $this->url = trim($_GET['url'], '/');
             $this->url = filter_var($this->url, FILTER_SANITIZE_URL);
