@@ -15,8 +15,10 @@ class Controller
      */
     public function loadModels($model)
     {
+        $modelPath = '../app/models/' . $model . '.php';
+
         // Require model file
-        require_once '../app/models/' . $model . '.php';
+        require_once $modelPath;
 
         // Instantiate model
         return new $model();
