@@ -10,7 +10,7 @@ class Controller
     /**
      * Load models
      *
-     * @param $model
+     * @param string $model
      * @return mixed
      */
     public function loadModels($model)
@@ -28,7 +28,7 @@ class Controller
     /**
      * Load Views
      *
-     * @param $view
+     * @param string $view
      * @param array $data
      */
     public function loadView($view, $data = [])
