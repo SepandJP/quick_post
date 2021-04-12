@@ -1,4 +1,5 @@
 <?php
+// todo change constant
 /**
  * Define site paths
  * Change these when upload or download project
