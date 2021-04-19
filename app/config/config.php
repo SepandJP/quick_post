@@ -9,15 +9,19 @@ $appRoot = dirname(__FILE__, 2);
 define('APPROOT', $appRoot);
 
 // URL Root
-$urlRoot = 'http://localhost/my_projects/quick_post/public';
+$urlRoot = 'http://localhost/my_projects/quick_post';
 define('URLROOT', $urlRoot);
 
 // Site Root
-$siteName = 'QuickPost';
+$siteName = 'Quick Post';
 define('SITENAME', $siteName);
 
+// App Version
+$appVersion = '1.0.0';
+define('APPVERSION', $appVersion);
 
 
+/********************************************************************/
 // DB Params
 /**
  * These constants are for connect to DataBase
