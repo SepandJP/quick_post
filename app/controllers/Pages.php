@@ -11,6 +11,7 @@ class Pages extends Controller
     {
         $data = [
             'title' => 'Welcome',
+            'description' => 'Simple social network built on myMVC PHP framework'
         ];
 
         $this->loadView('pages/index', $data);
@@ -19,7 +20,8 @@ class Pages extends Controller
     public function about()
     {
         $data = [
-            'title' => 'About Page'
+            'title' => 'About Page',
+            'description' => 'App to share posts with other users'
         ];
 
         $this->loadView('pages/about', $data);
