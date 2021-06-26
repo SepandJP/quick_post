@@ -9,13 +9,13 @@
         <form action="<?php echo URLROOT; ?>/users/login" method="post">
 
             <div class="form-floating m-1">
-                <input type="email" id="email" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['email']; ?>">
+                <input type="email" id="email" name="email" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['email']; ?>">
                 <label for="email" class="form-label">Email</label>
                 <span class="invalid-feedback"><?php echo $data['email_error']; ?></span>
             </div>
 
             <div class="form-floating m-1">
-                <input type="password" id="password" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['password']; ?>">
+                <input type="password" id="password" name="password" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['password']; ?>">
                 <label for="password" class="form-label">Password</label>
                 <span class="invalid-feedback"><?php echo $data['password_error']; ?></span>
             </div>
