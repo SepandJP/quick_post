@@ -34,7 +34,7 @@
 
             <div class="px-0 mx-0 row m-2 d-flex">
                 <div class="mt-3 col-sm-5 col-md-5 col-lg-7 col-xl-8">
-                    <button type="submit" class="btn btn-success rounded-pill w-100">Sing in</button>
+                    <button type="submit" class="btn btn-success rounded-pill w-100">Sign up</button>
                 </div>
 
                 <div class="col-12 col-sm-5 col-md-7 col-lg-5 col-xl-4 mt-3 float-end">
