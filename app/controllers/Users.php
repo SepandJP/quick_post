@@ -3,8 +3,12 @@
 
 class Users extends Controller
 {
+    private $userModel;
+
     public function __construct()
     {
+        $modelName = 'User';
+        $this->userModel = $this->loadModels('User');
     }
 
     public function index()
@@ -18,6 +22,14 @@ class Users extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             // Process form
+
+            /**
+             *
+             * Sanitize data that all of the entered data is String
+             *
+             */
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
 
             /**
              * Init data
@@ -49,13 +61,6 @@ class Users extends Controller
              *
              */
 
-            /**
-             *
-             * Sanitize data that all of the entered data is String
-             *
-             */
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
 
             /**
              *
@@ -67,11 +72,19 @@ class Users extends Controller
             {
                 $data['email_error'] = 'Please enter email';
             }
+            else
+            {
+                // Check exists email
+                if ($this->userModel->findUserByEmail($data['email']))
+                {
+                    $data['email_error'] = 'Email is already taken';
+                }
+            }
 
             // Validate Name
-            if(empty($data['name']))
+            if(empty($data['username']))
             {
-                $data['name_error'] = 'Please enter name';
+                $data['username_error'] = 'Please enter Username';
             }
 
             // Validate Password
@@ -152,6 +165,13 @@ class Users extends Controller
             // Process form
 
             /**
+             *
+             * Sanitize data that all of the entered data is String
+             *
+             */
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            /**
              * Init data
              * {}_error use for return the errors and show them.
              *
@@ -163,8 +183,8 @@ class Users extends Controller
             $data = [
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
-                'email_error' => '',
-                'password_error' => '',
+                'email_error' => null,
+                'password_error' => null,
             ];
 
             /**
@@ -176,13 +196,6 @@ class Users extends Controller
              * // https://www.php.net/manual/en/function.filter-input-array.php
              *
              */
-
-            /**
-             *
-             * Sanitize data that all of the entered data is String
-             *
-             */
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 
             /**
@@ -216,6 +229,7 @@ class Users extends Controller
             if (empty($data['email_error']) && empty($data['password_error']))
             {
                 // Validated the entered data
+                echo 'Login is Successful';
                 die('Login is Successful');
             }
             else

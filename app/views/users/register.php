@@ -6,6 +6,13 @@
     <div class="mx-auto col-md-6 bg-light">
         <h1 class="display-5 py-3">Create An Account</h1>
 
+        <?php
+        foreach ($data as $datum) {
+            echo $datum;
+            echo '<br>';
+            }
+        ?>
+
         <form action="<?php echo URLROOT; ?>/users/register" method="post">
 
             <div class="form-floating m-1">
@@ -15,19 +22,19 @@
             </div>
 
             <div class="form-floating m-1">
-                <input type="email" name="email" id="email" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['email']; ?>">
+                <input type="email" name="email" id="email" class="form-control <?php echo (!empty($data['email_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['email']; ?>">
                 <label for="email" class="form-label">Email</label>
                 <span class="invalid-feedback"><?php echo $data['email_error']; ?></span>
             </div>
 
             <div class="form-floating m-1">
-                <input type="password" name="password" id="password" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['password']; ?>">
+                <input type="password" name="password" id="password" class="form-control <?php echo (!empty($data['password_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['password']; ?>">
                 <label for="password" class="form-label">Password</label>
                 <span class="invalid-feedback"><?php echo $data['password_error']; ?></span>
             </div>
 
             <div class="form-floating m-1">
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control <?php echo (!empty($data['_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['confirm_password']; ?>">
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control <?php echo (!empty($data['confirm_password_error'])) ? 'is_invalid' : ''; ?>" placeholder=" " value="<?php echo $data['confirm_password']; ?>">
                 <label for="confirm_password" class="form-label">Confirm Password</label>
                 <span class="invalid-feedback"><?php echo $data['confirm_password_error']; ?></span>
             </div>
