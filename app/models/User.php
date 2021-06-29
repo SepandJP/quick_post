@@ -63,9 +63,6 @@ class User
         // Get user data
         $row = $this->db->getSingleResult();
 
-        var_dump($row);
-        var_dump($this->db->rowCount());
-
         // Check row
         if ($this->db->rowCount() > 0)
         {

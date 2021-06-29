@@ -13,3 +13,6 @@ spl_autoload_register(function ($className)
     $libraryPath = 'libraries/' . $className . '.php';
    require_once $libraryPath;
 });
+
+// Load Helpers files
+require_once 'helpers/url.php';

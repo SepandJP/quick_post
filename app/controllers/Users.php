@@ -126,7 +126,7 @@ class Users extends Controller
                 // process in model
                 if ($this->userModel->register($data))
                 {
-
+                    redirect('users/login');
                 }
                 else
                 {
