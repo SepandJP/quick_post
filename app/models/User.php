@@ -11,6 +11,37 @@ class User
         $this->db = new Database;
     }
 
+    /**
+     * Insert new user data in database
+     * notice: $data['password'] is a hashed password
+     *
+     * @param array $data
+     *
+     * @return bool
+     *             if execute the query without error return TRUE
+     *             else return FALSE
+     */
+    public function register($data)
+    {
+        // Insert Query
+        $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
+        $this->db->query($query);
+
+        // Bind Values
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+
+        // Execute Query
+        if ($this->db->executeQuery())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     /**
      * Get entered email and find a user by this email.
@@ -48,4 +79,5 @@ class User
             return false;
         }
     }
+
 }
