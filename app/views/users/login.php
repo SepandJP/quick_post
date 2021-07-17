@@ -6,6 +6,9 @@
     <div class="mx-auto col-md-6 bg-light">
         <h1 class="display-5 py-3">Log in to your Account</h1>
 
+        <!--    show 'register is successful' flash message    -->
+        <?php flashMessages('registerIsSuccessful'); ?>
+
         <form action="<?php echo URLROOT; ?>/users/login" method="post">
 
             <?php

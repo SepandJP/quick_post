@@ -124,8 +124,9 @@ class Users extends Controller
 
                 // Register User
                 // process in model
-                if ($this->userModel->register($data))
+                if (!($this->userModel->register($data)))
                 {
+                    flashMessages('registerIsSuccessful', 'You are registered successfully and can log in now.');
                     redirect('users/login');
                 }
                 else
