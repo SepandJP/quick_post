@@ -16,6 +16,15 @@ class Users extends Controller
     }
 
 
+    /**
+     * For register the users
+     *
+     * Get data from the user
+     * and
+     * Validating them
+     * after that
+     * Insert data in the database
+     */
     public function register()
     {
         // Check for POST method
@@ -168,8 +177,22 @@ class Users extends Controller
         }
     }
 
+    /**
+     * For login the user
+     *
+     * Get email and password from the user
+     * and
+     * Find user data in the database with email
+     * then
+     * Verify password
+     */
     public function login()
     {
+        // If the user is logged in, redirect to index page.
+        if ($this->isLoggedIn())
+        {
+            redirect('pages/index');
+        }
 
         // Check for POST method
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -215,11 +238,6 @@ class Users extends Controller
              * Validate all data that them not empty
              *
              */
-            // Validate Email
-            if(empty($data['email']))
-            {
-                $data['email_error'] = 'Please enter email';
-            }
 
             // Validate Password
             if(empty($data['password']))
@@ -232,6 +250,26 @@ class Users extends Controller
             }
 
 
+            // Validate Email
+            if(empty($data['email']))
+            {
+                $data['email_error'] = 'Please enter email';
+            }
+            else
+            {
+                // Check for user
+                if ($this->userModel->findUserByEmail($data['email']))
+                {
+                    // User found
+                }
+                else
+                {
+                    // User not found
+                    $data['email_error'] = 'No user found';
+                }
+            }
+
+
             /**
              *
              * Make sure not exists any errors and [.._errors] fields are empty
@@ -241,8 +279,19 @@ class Users extends Controller
             if (empty($data['email_error']) && empty($data['password_error']))
             {
                 // Validated the entered data
-                echo 'Login is Successful';
-                die('Login is Successful');
+                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                if ($loggedInUser)
+                {
+                    // Create SESSION
+                    $this->createLoggedInUserSession($loggedInUser);
+                }
+                else
+                {
+                    $data['password_error'] = 'Password incorrect';
+
+                    $this->loadView('users/login', $data);
+                }
             }
             else
             {
@@ -272,6 +321,61 @@ class Users extends Controller
 
             // Load view
             $this->loadView('users/login', $data);
+        }
+    }
+
+    /**
+     * Create the user's SESSION
+     *
+     * Defined in view:
+     *                If the user logged in, remove login and register buttons from navbar.
+     *
+     * @param mixed $user The user's data in DataBase
+     */
+    public function createLoggedInUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_name'] = $user->name;
+        $_SESSION['user_username'] = $user->username;
+        $_SESSION['user_email'] = $user->email;
+
+        redirect('pages/index');
+    }
+
+    /**
+     * Users is logout
+     *
+     * Remove SESSION
+     * and
+     * Redirect to login page
+     *
+     */
+    public function logout()
+    {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_email']);
+        unset($_SESSION['user_username']);
+        unset($_SESSION['user_name']);
+        session_destroy();
+        redirect('users/login');
+    }
+
+    /**
+     * Check the user is logged in
+     *
+     * @return bool
+     *              If exists SESSION of the user, return TRUE.
+     *             If doesn't exists SESSION, return FALSE.
+     */
+    public function isLoggedIn()
+    {
+        if (isset($_SESSION['user_id']))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

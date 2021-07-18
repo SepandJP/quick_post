@@ -77,4 +77,37 @@ class User
         }
     }
 
+    /**
+     * Get email and password from log in form
+     *
+     * Find user with email
+     * and
+     * Verify password
+     *
+     * @param string $email
+     * @param string $password
+     *
+     * @return bool|mixed
+     *                   If the password is correct and verified return the user's data from DataBase
+     *                   Else the password is incorrect and doesn't verify return FALSE
+     */
+    public function login($email, $password)
+    {
+        $query = 'SELECT * FROM users WHERE email = :email';
+        $this->db->query($query);
+        $this->db->bind(':email', $email);
+        $this->db->executeQuery();
+
+        $row = $this->db->getSingleResult();
+
+        $hashedPassword = $row->password;
+        if (password_verify($password, $hashedPassword))
+        {
+            return $row;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

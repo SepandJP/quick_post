@@ -24,8 +24,12 @@
 <!--            </form>-->
 
             <div class="text-end">
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                    <a href="<?php echo URLROOT;?>/users/logout" type="button" class="btn btn-danger">Log out</a>
+                <?php else : ?>
                 <a href="<?php echo URLROOT;?>/users/login" type="button" class="btn btn-outline-light me-2">Login</a>
                 <a href="<?php echo URLROOT;?>/users/register" type="button" class="btn btn-warning">Sign-up</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
