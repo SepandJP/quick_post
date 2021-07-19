@@ -44,3 +44,22 @@ function flashMessages ($name='', $message='', $class='alert alert-success')
         }
     }
 }
+
+/**
+ * Check the user is logged in
+ *
+ * @return bool
+ *              If exists SESSION of the user, return TRUE.
+ *             If doesn't exists SESSION, return FALSE.
+ */
+function isLoggedIn()
+{
+    if (isset($_SESSION['user_id']))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
