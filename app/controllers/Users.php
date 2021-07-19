@@ -189,10 +189,10 @@ class Users extends Controller
     public function login()
     {
         // If the user is logged in, redirect to index page.
-        if ($this->isLoggedIn())
-        {
-            redirect('pages/index');
-        }
+//        if ($this->isLoggedIn())
+//        {
+//            redirect('posts');
+//        }
 
         // Check for POST method
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -339,7 +339,7 @@ class Users extends Controller
         $_SESSION['user_username'] = $user->username;
         $_SESSION['user_email'] = $user->email;
 
-        redirect('pages/index');
+        redirect('posts');
     }
 
     /**
@@ -360,22 +360,4 @@ class Users extends Controller
         redirect('users/login');
     }
 
-    /**
-     * Check the user is logged in
-     *
-     * @return bool
-     *              If exists SESSION of the user, return TRUE.
-     *             If doesn't exists SESSION, return FALSE.
-     */
-    public function isLoggedIn()
-    {
-        if (isset($_SESSION['user_id']))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
