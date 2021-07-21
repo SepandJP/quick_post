@@ -26,7 +26,7 @@ class Posts extends Controller
     }
 
     /**
-     *
+     * Show all of the posts.
      */
     public function index()
     {
@@ -38,5 +38,20 @@ class Posts extends Controller
         ];
 
         $this->loadView('posts/index', $data);
+    }
+
+    /**
+     * Write a post and share it.
+     */
+    public function add()
+    {
+        $data = [
+            'title' => '',
+            'body' => '',
+            'title_error' => '',
+            'body_error' => ''
+        ];
+
+        $this->loadView('posts/add', $data);
     }
 }
