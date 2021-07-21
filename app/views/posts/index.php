@@ -3,7 +3,7 @@
 <div class="row">
 
     <div class="col-md-3 m-2">
-        <a href="<?php URLROOT . '/posts/add'; ?>" type="button" class="btn btn-primary">Add post</a>
+        <a href = " <?php echo URLROOT . '/posts/add'; ?> " type="button" class="btn btn-primary">Add post</a>
     </div>
 
     <div class="col-md-6">
