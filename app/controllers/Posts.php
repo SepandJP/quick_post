@@ -45,12 +45,28 @@ class Posts extends Controller
      */
     public function add()
     {
-        $data = [
-            'title' => '',
-            'body' => '',
-            'title_error' => '',
-            'body_error' => ''
-        ];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            // Sanitize POST array
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'title' => trim($_POST['title']),
+                'body' => trim($_POST['body']),
+                'user_id' => $_SESSION['user_id'],
+                'title_error' => '',
+                'body_error' => ''
+            ];
+        }
+
+        else
+        {
+            $data = [
+                'title' => '',
+                'body' => ''
+            ];
+        }
+
 
         $this->loadView('posts/add', $data);
     }
