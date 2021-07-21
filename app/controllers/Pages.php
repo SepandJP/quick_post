@@ -9,6 +9,11 @@ class Pages extends Controller
 
     public function index()
     {
+        /* 
+         * If the user was logged in,
+         * with click on home tab or site's logo
+         * redirected to the posts page
+        */
         if (isLoggedIn())
         {
             redirect('posts');
