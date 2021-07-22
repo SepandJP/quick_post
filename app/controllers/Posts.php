@@ -10,6 +10,13 @@ class Posts extends Controller
     private $postModel;
 
     /**
+     * @var mixed
+     *           Connecting to the Users Model
+     *           For get data of the user and define permissions for edit and delete posts.
+     */
+    private $userModel;
+
+    /**
      * Posts constructor.
      *
      * If the users don't log in site, they redirect to the login page and do not have access to see and modify the posts.
@@ -23,6 +30,12 @@ class Posts extends Controller
         }
 
         $this->postModel = $this->loadModels('Post');
+
+        /*
+         * Load User model
+         * for ger data of the user
+         * */
+        $this->userModel = $this->loadModels('User');
     }
 
     /**
@@ -104,5 +117,18 @@ class Posts extends Controller
 
 
         $this->loadView('posts/add', $data);
+    }
+
+    public function show($id)
+    {
+        $post = $this->postModel->getPostById($id);
+        $user = $this->userModel->getUserById($post['user_id']);
+
+        $data = [
+            'post' => $post,
+            'user' => $user
+        ];
+
+        $this->loadView('posts/show', $data);
     }
 }
