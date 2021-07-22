@@ -17,7 +17,8 @@
 
         <div>
             <?php foreach ($data['posts'] as $post) : ?>
-                <div class="card">
+            <a href="<?php echo URLROOT;?>/show">
+                <div class="card my-1">
                     <div class="card-body">
                         <div class="card-header">
                             <h4 class="card-title"><?php echo $post->title; ?></h4>
@@ -29,6 +30,7 @@
                         </p>
                     </div>
                 </div>
+            </a>
             <?php endforeach; ?>
         </div>
 
