@@ -119,6 +119,13 @@ class Posts extends Controller
         $this->loadView('posts/add', $data);
     }
 
+    /**
+     * Get id of the post
+     * and show data of that post.
+     *
+     * @param int $id
+     *               Id of the post that we want to show data of it.
+     */
     public function show($id)
     {
         $post = $this->postModel->getPostById($id);

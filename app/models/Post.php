@@ -50,4 +50,24 @@ class Post
         // Execute query
         $this->db->executeQuery();
     }
+
+    /**
+     * Select a post with a special id and return it.
+     *
+     * @param int $id
+     *
+     * @return mixed $row is all of the data for a post in database.
+     */
+    public function getPostById($id)
+    {
+        $query = 'SELECT * FROM posts WHERE id = :id';
+
+        $this->db->query($query);
+        $this->db->bind(':id', $id);
+
+        // Execute query
+        $row = $this->db->getSingleResult();
+
+        return $row;
+    }
 }
