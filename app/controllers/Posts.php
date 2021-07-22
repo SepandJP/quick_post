@@ -86,7 +86,7 @@ class Posts extends Controller
              * then insert post to database
              * and show successful message
             */
-            if (!$this->postModel->addPost($data))
+            if (!($this->postModel->addPost($data)))
             {
                 flashMessages('addPost', 'Sharing of the Post was Successful');
                 redirect('posts');
