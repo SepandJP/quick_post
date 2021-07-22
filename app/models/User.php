@@ -110,4 +110,26 @@ class User
             return false;
         }
     }
+
+    /**
+     * Get data of user that wrote this post.
+     * Because we want if this user writer of this post, user permit edit or delete this post.
+     *
+     * @param integer $id
+     *
+     * @return mixed $row
+     */
+    public function getUserById($id)
+    {
+        $query = 'SELECT * FROM users WHERE id = :id';
+        $this->db->query($query);
+
+        // Bind value
+        $this->db->bind(':id', $id);
+
+        // Execute query and get result
+        $row = $this->db->getSingleResult();
+
+        return $row;
+    }
 }
