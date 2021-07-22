@@ -7,6 +7,11 @@
     </div>
 
     <div class="col-md-6">
+
+        <div class="mt-2">
+            <?php flashMessages('addPost'); ?>
+        </div>
+
         <h1>Posts</h1>
 
 

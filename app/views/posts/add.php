@@ -10,9 +10,6 @@
     <div class="mx-auto bg-light p-2">
         <h1 class="display-5 py-3">Write New Post</h1>
 
-        <!--    show 'post is shared' flash message    -->
-        <?php flashMessages('writeIsSuccessful'); ?>
-
         <form action="<?php echo URLROOT; ?>/posts/add" method="post">
 
             <?php
