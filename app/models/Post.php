@@ -10,6 +10,12 @@ class Post
         $this->db = new Database();
     }
 
+    /**
+     * Get all of the posts that, this user written them.
+     * and return them
+     *
+     * @return array Return as an array of mixed object.
+     */
     public function getAllPosts()
     {
         $query = 'SELECT *,
