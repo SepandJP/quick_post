@@ -12,21 +12,14 @@
 
         <form action="<?php echo URLROOT; ?>/posts/add" method="post">
 
-            <?php
-            foreach ($data as $index => $datum) {
-                echo "$index : $datum";
-                echo '<br>';
-            }
-            ?>
-
             <div class="form-floating m-1 mb-3">
-                <input type="text" id="title" name="title" class="form-control <?php echo (!empty($data['title_error'])) ? 'is_invalid' : ''; ?>" placeholder="Title" value="<?php echo $data['title']; ?>">
+                <input type="text" id="title" name="title" class="form-control <?php echo (!empty($data['title_error'])) ? ' is-invalid ' : ''; ?>" placeholder="Title" value="<?php echo $data['title']; ?>">
                 <label for="title" class="form-label">Title</label>
                 <span class="invalid-feedback"><?php echo $data['title_error']; ?></span>
             </div>
 
             <div class="form-floating m-1">
-                <textarea name="body" id="body" style="height: 10em;" class="form-control form-control-lg<?php echo (!empty($data['body_error'])) ? 'is_invalid' : ''?>" placeholder="Body"><?php echo $data['body'];?></textarea>
+                <textarea name="body" id="body" style="height: 10em;" class="form-control form-control-lg<?php echo (!empty($data['body_error'])) ? ' is-invalid ' : ''?>" placeholder="Body"><?php echo $data['body'];?></textarea>
                 <label for="body" class="form-label">body</label>
                 <span class="invalid-feedback"><?php echo $data['body_error']; ?></span>
             </div>
