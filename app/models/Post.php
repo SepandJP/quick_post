@@ -71,4 +71,35 @@ class Post
 
         return $row;
     }
+
+    /**
+     * Change post's data
+     *
+     * @param mixed $data
+     *                   Data of a post that user want edit it.
+     *
+     * @return bool
+     *             If update of the post is successful return TRUE
+     *             else return FALSE
+     */
+    public function editPost($data)
+    {
+        $query = 'UPDATE posts SET title = :title, body = :body WHERE id = :id';
+        $this->db->query($query);
+
+        //Bind values
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':body', $data['body']);
+
+        // Execute query
+        if ($this->db->executeQuery())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
