@@ -188,9 +188,9 @@ class Posts extends Controller
                      * then insert post to database
                      * and show successful message
                     */
-                    if (!($this->postModel->addPost($data))) {
+                    if (!($this->postModel->editPost($data))) {
                         flashMessages('updatePost', 'Post Updated Successfully');
-                        redirect('posts');
+                        redirect("posts/show/$id");
                     } else {
                         die('Oh, Something went wrong...');
                     }
@@ -211,7 +211,9 @@ class Posts extends Controller
                 $data = [
                     'id' => $id,
                     'title' => $post->title,
-                    'body' => $post->body
+                    'body' => $post->body,
+                    'title_error' => '',
+                    'body_error' => ''
                 ];
 
                 // Load add post page with error

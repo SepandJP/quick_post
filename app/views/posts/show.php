@@ -4,6 +4,8 @@
 
 <main>
 
+    <?php flashMessages('updatePost'); ?>
+
     <h1><?php echo $data['post']->title?></h1>
 
     <div class="bg-secondary text-white p-2">
