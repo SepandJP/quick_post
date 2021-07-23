@@ -145,6 +145,12 @@ class Posts extends Controller
         }
     }
 
+    /**
+     * Change data of the post.
+     *
+     * @param integer $id
+     *                   The id of the post that the user wants to edit.
+     */
     public function edit($id)
     {
         // Check for existing the post
