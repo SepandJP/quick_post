@@ -58,8 +58,7 @@ class Posts extends Controller
      */
     public function add()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -70,53 +69,45 @@ class Posts extends Controller
                 'title_error' => '',
                 'body_error' => ''
             ];
-        }
 
+
+            // Validate data
+            if (empty($data['title'])) {
+                $data['title_error'] = 'Please enter title';
+            }
+            if (empty($data['body'])) {
+                $data['body_error'] = 'Please enter body text';
+            }
+
+            // Make sure that no errors
+            if (empty($data['title_error']) && empty($data['body_error'])) {
+                /*
+                 *  Validated
+                 * then insert post to database
+                 * and show successful message
+                */
+                if (!($this->postModel->addPost($data))) {
+                    flashMessages('addPost', 'Sharing of the Post was Successful');
+                    redirect('posts');
+                } else {
+                    die('Oh, Something went wrong...');
+                }
+            }
+            else
+            {
+                $this->loadView('posts/add', $data);
+            }
+        }
         else
-        {
+            {
             $data = [
                 'title' => '',
                 'body' => ''
             ];
-        }
 
-
-        // Validate data
-        if (empty($data['title']))
-        {
-            $data['title_error'] = 'Please enter title';
-        }
-        if (empty($data['body']))
-        {
-            $data['title_error'] = 'Please enter body text';
-        }
-
-        // Make sure that no errors
-        if (empty($data['title_error'] && empty($data['body_error'])))
-        {
-            /*
-             *  Validated
-             * then insert post to database
-             * and show successful message
-            */
-            if (!($this->postModel->addPost($data)))
-            {
-                flashMessages('addPost', 'Sharing of the Post was Successful');
-                redirect('posts');
-            }
-            else
-            {
-                die('Oh, Something went wrong...');
-            }
-        }
-        else
-        {
             // Load add post page with error
             $this->loadView('posts/add', $data);
         }
-
-
-        $this->loadView('posts/add', $data);
     }
 
     /**
