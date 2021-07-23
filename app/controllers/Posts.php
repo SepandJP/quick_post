@@ -128,14 +128,34 @@ class Posts extends Controller
      */
     public function show($id)
     {
-        $post = $this->postModel->getPostById($id);
-        $user = $this->userModel->getUserById($post->user_id);
+        // If the user types a post's id that doesn't exist.
+        if (is_null($id))
+        {
+            redirect('posts');
+        }
 
-        $data = [
-            'post' => $post,
-            'user' => $user
-        ];
+        // If the user types a post's id that doesn't exist in url.
+        elseif (!($this->postModel->getPostById($id)))
+        {
+            redirect('posts');
+        }
+        else {
 
-        $this->loadView('posts/show', $data);
+
+            $post = $this->postModel->getPostById($id);
+            $user = $this->userModel->getUserById($post->user_id);
+
+            $data = [
+                'post' => $post,
+                'user' => $user
+            ];
+
+            $this->loadView('posts/show', $data);
+        }
+    }
+
+    public function edit()
+    {
+
     }
 }

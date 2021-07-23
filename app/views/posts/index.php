@@ -17,7 +17,7 @@
 
         <div>
             <?php foreach ($data['posts'] as $post) : ?>
-            <a href="<?php echo URLROOT;?>/show">
+            <a href="<?php echo URLROOT;?>/posts/show/<?php echo $post->postId;?>">
                 <div class="card my-1">
                     <div class="card-body">
                         <div class="card-header">

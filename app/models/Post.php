@@ -20,7 +20,8 @@ class Post
     {
         $query = 'SELECT *,
                         posts.created_at as postCreated,
-                        users.name as userName
+                        users.name as userName,
+                        posts.id as postId
                         FROM posts
                         INNER JOIN users
                         ON posts.user_id = users.id
