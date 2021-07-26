@@ -248,7 +248,7 @@ class Posts extends Controller
 
             // Get existing post from model
             $this->postModel->deletePost($id);
-            flashMessages('postMessage', 'Post removed');
+            flashMessages('deletePost', 'Post removed');
             redirect('posts');
         }
         else

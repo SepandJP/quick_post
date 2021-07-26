@@ -10,6 +10,7 @@
 
         <div class="mt-2">
             <?php flashMessages('addPost'); ?>
+            <?php flashMessages('deletePost'); ?>
         </div>
 
         <h1>Posts</h1>
