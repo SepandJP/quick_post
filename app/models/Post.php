@@ -102,4 +102,31 @@ class Post
             return false;
         }
     }
+
+    /**
+     * Remove post from database.
+     *
+     * @param integer $id
+     *           The post's id in database row that, the user wants to remove it.
+     *
+     * @return bool
+     *             If query executes and post removed successfully return TRUE.
+     *             Else return FALSE.
+     */
+    public function deletePost($id)
+    {
+        $query = 'DELETE FROM posts WHERE id = :id';
+        $this->db->query($query);
+        // Bind Value
+        $this->db->bind(':id', $id);
+        // Execute Query
+        if ($this->db->executeQuery())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
