@@ -222,10 +222,30 @@ class Posts extends Controller
         }
     }
 
+    /**
+     * Remove post from database.
+     *
+     * @param integer $id
+     *           The post's id in database row that, the user wants to remove it.
+     */
     public function delete($id)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
+            /*
+             * Check for post's owner
+             * Just if this user wrote this post, the user can delete this post.
+             * */
+
+            // Get existing post from model
+            $post = $this->postModel->getPostById($id);
+
+            // Check for owner
+            if ($post->user_id != $_SESSION['user_id'])
+            {
+                redirect('posts');
+            }
+
             // Get existing post from model
             $this->postModel->deletePost($id);
             flashMessages('postMessage', 'Post removed');
