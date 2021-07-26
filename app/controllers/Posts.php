@@ -221,4 +221,19 @@ class Posts extends Controller
             }
         }
     }
+
+    public function delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            // Get existing post from model
+            $this->postModel->deletePost($id);
+            flashMessages('postMessage', 'Post removed');
+            redirect('posts');
+        }
+        else
+        {
+            redirect('posts');
+        }
+    }
 }
